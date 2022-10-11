@@ -3,10 +3,12 @@ const taskInput = document.querySelector('#task')
 const taskList = document.querySelector('ul')
 const delAllTasks = document.querySelector('#del-tasks')
 
+
 form.addEventListener('submit', addTask)
 taskList.addEventListener('click', deleteTask)
 delAllTasks.addEventListener('click', deleteAllTasks)
 document.addEventListener('DOMContentLoaded', getTasks)
+
 
 function addTask(e){
     // create list item
@@ -89,4 +91,17 @@ function getTasks(){
         const ul = document.querySelector('ul')
         ul.appendChild(li)
     })
+}
+
+var searchInput = document.getElementById('filter');
+searchInput.onkeyup = function () {
+    var filter = searchInput.value.toUpperCase();
+    var lis = document.getElementsByTagName('li');
+    for (var i = 0; i < lis.length; i++) {
+        var name = lis[i].innerHTML;
+        if (name.toUpperCase().indexOf(filter) == 0) 
+            lis[i].style.display = 'list-item';
+        else
+            lis[i].style.display = 'none';
+    }
 }
